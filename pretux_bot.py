@@ -35,13 +35,13 @@ def start(update: Update, context: CallbackContext) -> int:
     logger.info(f"User {user.full_name} { user.id}  started the conversation.")
     keyboard = [
         [
-            InlineKeyboardButton("Confirmar bolsa", callback_data=str(SCHOLARSHIP)),
-            InlineKeyboardButton("Checar pendencia", callback_data=str(CHECK_PENDENCY)),
+            InlineKeyboardButton("Confirmação de bolsa", callback_data=str(SCHOLARSHIP)),
+            InlineKeyboardButton("Verificar pendência", callback_data=str(CHECK_PENDENCY)),
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text(
-        "Olá! Sou o Bot da Pretux! Escolha uma das opções abaixo:", reply_markup=reply_markup)
+        "Olá! Sou o bot Pretuxin! Escolha uma das opções abaixo:", reply_markup=reply_markup)
     
     return BOLSA
 
@@ -51,7 +51,7 @@ def restart_process(update: Update, context: CallbackContext) -> int:
     query.answer()
     query.edit_message_reply_markup(reply_markup=None)
     context.bot.send_message(
-        chat_id=update.effective_chat.id, text="""Você não confirmou que não deseja a bolsa. Para confirmar, reinicie o processo.""")
+        chat_id=update.effective_chat.id, text="""Você não confirmou a recusa da bolsa, para reiniciar o processo você precisa digitar /start""")
 
 
 
@@ -64,21 +64,20 @@ def yes_confirm(update: Update, context: CallbackContext) -> int:
     notion.remove_user_after_confirm(context.user_data["user_id_notion"])
     context.bot.send_message(
         chat_id=update.effective_chat.id, text="Obrigado por confirmar!")
-    context.bot.send_photo(chat_id=update.effective_chat.id,
-                               photo="https://c.tenor.com/sIkK8k5WuN0AAAAC/will-smith-fresh-prince.gif")
-    
+    context.bot.send_video(chat_id=update.effective_chat.id,
+                               video="https://c.tenor.com/sIkK8k5WuN0AAAAC/will-smith-fresh-prince.gif")    
 
 def yes_confirm_check(update: Update, context: CallbackContext) -> int:
     """Ask the user for info about the selected predefined choice."""
     keyboard = [
             [
-                InlineKeyboardButton("Não", callback_data=str(RESTART)),
                 InlineKeyboardButton("Sim", callback_data=str(YES_CONFIRM)),
+                InlineKeyboardButton("Não", callback_data=str(RESTART)),
             ]
         ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_message(
-        chat_id=update.effective_chat.id, text="Você tem certeza?", reply_markup=reply_markup)
+        chat_id=update.effective_chat.id, text="Você tem certeza que deseja confirmar a bolsa?", reply_markup=reply_markup)
     query = update.callback_query
     query.answer()
     query.edit_message_reply_markup(reply_markup=None)
@@ -94,20 +93,20 @@ def no_confirm(update: Update, context: CallbackContext) -> int:
     notion.remove_user_after_confirm(context.user_data["user_id_notion"])
     context.bot.send_message(chat_id=update.effective_chat.id,
                              text="A PretUX agradece! Seu nome será removido da lista!")
-    context.bot.send_photo(chat_id=update.effective_chat.id,
-                               photo="https://c.tenor.com/UAdpvL0E4t4AAAAC/my-wife-and-kids-hurt.gif")
+    context.bot.send_video(chat_id=update.effective_chat.id,
+                               video="https://c.tenor.com/UAdpvL0E4t4AAAAC/my-wife-and-kids-hurt.gif")
 
 def no_confirm_check(update: Update, context: CallbackContext) -> int:
     """Ask the user for info about the selected predefined choice."""
     keyboard = [
             [
-                InlineKeyboardButton("Não", callback_data=str(RESTART)),
                 InlineKeyboardButton("Sim", callback_data=str(NO_CONFIRM)),
+                InlineKeyboardButton("Não", callback_data=str(RESTART)),
             ]
         ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     context.bot.send_message(
-        chat_id=update.effective_chat.id, text="Você tem certeza?", reply_markup=reply_markup)
+        chat_id=update.effective_chat.id, text="Você tem certeza que deseja recusar a bolsa?", reply_markup=reply_markup)
     query = update.callback_query
     query.answer()
     query.edit_message_reply_markup(reply_markup=None)
@@ -128,19 +127,19 @@ def scholarship(update: Update, context: CallbackContext) -> int:
             "E-mail: " + user_info[0]["email"] + "\n"
             "Curso: " + user_info[0]["course_name"] + "\n",
         )
-        context.bot.send_photo(chat_id=update.effective_chat.id,
-                               photo="https://c.tenor.com/N2UCqEZRRVAAAAAC/gloria-maria.gif")
+        context.bot.send_video(chat_id=update.effective_chat.id,
+                               video="https://c.tenor.com/N2UCqEZRRVAAAAAC/gloria-maria.gif")
+
     if user_info[0]["status"] == 'not_contemplated':
         update.message.reply_text(
             "Poxa, seu nome não está na lista de pessoas contempladas.")
-        context.bot.send_photo(chat_id=update.effective_chat.id,
-                               photo="https://c.tenor.com/BViD0bI6hYAAAAAC/futureofrep-tiffany.gif")
+        context.bot.send_video(chat_id=update.effective_chat.id,
+                               video="https://c.tenor.com/BViD0bI6hYAAAAAC/futureofrep-tiffany.gif")
     if user_info[0]["status"] == 'contemplated':
         keyboard = [
             [
-
-                InlineKeyboardButton("Recusar", callback_data=str(NO_CONFIRM)),
                 InlineKeyboardButton("Confirmar", callback_data=str(YES_CONFIRM)),
+                InlineKeyboardButton("Recusar", callback_data=str(NO_CONFIRM)),
             ]
         ]
         reply_markup = InlineKeyboardMarkup(keyboard)
@@ -193,8 +192,8 @@ def check_pendency(update: Update, context: CallbackContext) -> int:
             "Lembrando que, enquanto o artigo não for enviado, você não pode concorrer a novas bolsas."
             
         )
-        context.bot.send_photo(chat_id=update.effective_chat.id,
-                               photo="https://t8j5n5j3.rocketcdn.me/wp-content/uploads/2015/12/1-37.jpg")
+        context.bot.send_video(chat_id=update.effective_chat.id,
+                               video="https://t8j5n5j3.rocketcdn.me/wp-content/uploads/2015/12/1-37.jpg")
     if user_info[0]["status"] == 'is_not_pending':
         update.message.reply_text(
             "Uhuul, você não tem pendênciae e pode concorrer as novas bolsas!")

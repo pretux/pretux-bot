@@ -4,10 +4,10 @@ import json
 import time
 
 url_base = "https://api.notion.com/v1/databases/"
-database_contemplated = "37ada057fd7845e198ec1f312f77ff5c"
-database_general = "208264681f304e1c8bf471695adb2e8c"
-database_refused = "a79e7e2680f94365886a0988eb318976"
-notion_token = "secret_jSM6cqanTtikhzRkaRcP0JWUvNdKMT2FMdB8TNPlSOS"
+database_contemplated = "f78bbfdcff85446089f4a1900f6b555b"
+database_general = "24ae3965567841808b9ac6349c7b6e33"
+database_refused = "94271d3ea7404fc2a846cf741a737b9f"
+notion_token = "secret_hYdSZcKGGln29FVZ9ZiH9kbZBPRi5yrLXWkiDMrPD4W"
 notion_version = "2021-08-16"
 user_info = {}
 
@@ -262,6 +262,7 @@ def refuse_scholarship(name, email, course_name, course_title, end_time, activit
 
 def check_pendency(email):
     user = check_user(email, database_general, True)
+    print(user)
     user_info = []
     if len(user["results"]) == 0:
         user_info.append({'status': "is_not_pending", })

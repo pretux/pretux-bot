@@ -40,108 +40,108 @@ def remove_user_after_confirm(user_notion_id):
 def confirm_scholarship(name, email, course_name, course_title, end_time, activity, telegram_id):
     url = "https://api.notion.com/v1/pages/"
     payload = json.dumps({
-        "parent": {
-            "database_id": database_general
+    "parent": {
+        "database_id": database_general
+    },
+    "properties": {
+        "Link": {
+            "id": "%3D%3BAL",
+            "type": "url",
+            "url": "none"
         },
-        "properties": {
-            "Link": {
-                "id": "%3D%3BAL",
-                "type": "url",
-                "url": "none"
-            },
-            "Data do termino do curso": {
-                "id": "%40%5CQB",
-                "type": "date",
-                "date": {
-                    "start": end_time,
-                    "end": None
-                }
-            },
-            "Email": {
-                "id": "Eoo%7C",
-                "type": "email",
-                "email": email
-            },
-            "Curso": {
-                "id": "SHM%3D",
-                "type": "select",
-                "select": {
-                    "id": "{zR:",
-                    "name": course_name,
-                    "color": "orange"
-                }
-            },
-            "Done": {
-                "id": "T%60xu",
-                "type": "select",
-                "select": {
-                    "id": "A[]a",
-                    "name": "Não",
-                    "color": "green"
-                }
-            },
-            "Título": {
-                "id": "%5BMu%3C",
-                "type": "rich_text",
-                "rich_text": [
-                    {
-                        "type": "text",
-                        "text": {
-                            "content": course_title
-                        },
-                        "annotations": {
-                            "bold": False,
-                            "italic": False,
-                            "strikethrough": False,
-                            "underline": False,
-                            "code": False,
-                            "color": "default"
-                        },
-                        "plain_text": course_name,
-                        "href": "none"
-                    }
-                ]
-            },
-            "Pendente": {
-                "id": "nT%3A%5D",
-                "type": "checkbox",
-                "checkbox": True
-            },
-            "telegram_id": {
-                    "id": "PnFU",
-                    "type": "number",
-                    "number": telegram_id
-                },
-            "Tipo": {
-                "id": "sUZl",
-                "type": "select",
-                "select": {
-                    "id": "^xz{",
-                    "name": activity,
-                    "color": "orange"
-                }
-            },
-            "Observações": {
-                "id": "w%3D%3FH",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "Pessoa": {
-                "id": "title",
-                "type": "title",
-                "title": [
-                    {
-                        "type": "text",
-                        "text": {
-                            "content": name
-                        },
-                        "plain_text": name,
-                        "href": "none"
-                    }
-                ]
+        "Data do termino do curso": {
+            "id": "%40%5CQB",
+            "type": "date",
+            "date": {
+                "start": "2022-09-24",
+                "end": end_time
             }
+        },
+        "Email": {
+            "id": "Eoo%7C",
+            "type": "email",
+            "email": email
+        },
+        "Curso": {
+            "id": "sHj%3D",
+            "type": "select",
+            "select": {
+                "id": "EgE|",
+                "name": course_name,
+                "color": "red"
+            }
+        },
+        "Done": {
+            "id": "vZbr",
+            "type": "select",
+            "select": {
+                "id": "UpUB",
+                "name": "Não",
+                "color": "orange"
+            }
+        },
+        "Título": {
+            "id": "%5BMu%3C",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "Mergo"
+                    },
+                    "annotations": {
+                        "bold": False,
+                        "italic": False,
+                        "strikethrough": False,
+                        "underline": False,
+                        "code": False,
+                        "color": "default"
+                    },
+                    "plain_text": course_title,
+                    "href": "none"
+                }
+            ]
+        },
+        "Pendente": {
+            "id": "nT%3A%5D",
+            "type": "checkbox",
+            "checkbox": True
+        },
+        "telegram_id": {
+            "id": "PnFU",
+            "type": "number",
+            "number": telegram_id
+        },
+        "Tipo": {
+            "id": "kIk_",
+            "type": "select",
+            "select": {
+                "id": "ETjJ",
+                "name": "Entregar um artigo",
+                "color": "orange"
+            }
+        },
+        "Observações": {
+            "id": "w%3D%3FH",
+            "type": "rich_text",
+            "rich_text": []
+        },
+        "Pessoa": {
+            "id": "title",
+            "type": "title",
+            "title": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": name
+                    },
+                    "plain_text": name,
+                    "href": "none"
+                }
+            ]
         }
-    })
+    }
+})
 
     headers = {'Authorization': 'Bearer ' + notion_token,
                'Notion-Version': notion_version, 'Content-Type': 'application/json'}
@@ -151,108 +151,108 @@ def confirm_scholarship(name, email, course_name, course_title, end_time, activi
 def refuse_scholarship(name, email, course_name, course_title, end_time, activity, telegram_id):
     url = "https://api.notion.com/v1/pages/"
     payload = json.dumps({
-        "parent": {
-            "database_id": database_refused
+    "parent": {
+        "database_id": database_refused
+    },
+    "properties": {
+        "Link": {
+            "id": "%3D%3BAL",
+            "type": "url",
+            "url": "none"
         },
-        "properties": {
-            "Link": {
-                "id": "%3D%3BAL",
-                "type": "url",
-                "url": "none"
-            },
-            "Data do termino do curso": {
-                "id": "%40%5CQB",
-                "type": "date",
-                "date": {
-                    "start": end_time,
-                    "end": None
-                }
-            },
-            "Email": {
-                "id": "Eoo%7C",
-                "type": "email",
-                "email": email
-            },
-            "Curso": {
-                "id": "SHM%3D",
-                "type": "select",
-                "select": {
-                    "id": "{zR:",
-                    "name": course_name,
-                    "color": "orange"
-                }
-            },
-            "Done": {
-                "id": "T%60xu",
-                "type": "select",
-                "select": {
-                    "id": "A[]a",
-                    "name": "Não",
-                    "color": "green"
-                }
-            },
-            "Título": {
-                "id": "%5BMu%3C",
-                "type": "rich_text",
-                "rich_text": [
-                    {
-                        "type": "text",
-                        "text": {
-                            "content": course_title
-                        },
-                        "annotations": {
-                            "bold": False,
-                            "italic": False,
-                            "strikethrough": False,
-                            "underline": False,
-                            "code": False,
-                            "color": "default"
-                        },
-                        "plain_text": course_name,
-                        "href": "none"
-                    }
-                ]
-            },
-            "Pendente": {
-                "id": "nT%3A%5D",
-                "type": "checkbox",
-                "checkbox": True
-            },
-            "telegram_id": {
-                    "id": "PnFU",
-                    "type": "number",
-                    "number": telegram_id
-                },
-            "Tipo": {
-                "id": "sUZl",
-                "type": "select",
-                "select": {
-                    "id": "^xz{",
-                    "name": activity,
-                    "color": "orange"
-                }
-            },
-            "Observações": {
-                "id": "w%3D%3FH",
-                "type": "rich_text",
-                "rich_text": []
-            },
-            "Pessoa": {
-                "id": "title",
-                "type": "title",
-                "title": [
-                    {
-                        "type": "text",
-                        "text": {
-                            "content": name
-                        },
-                        "plain_text": name,
-                        "href": "none"
-                    }
-                ]
+        "Data do termino do curso": {
+            "id": "%40%5CQB",
+            "type": "date",
+            "date": {
+                "start": "2022-09-24",
+                "end": end_time
             }
+        },
+        "Email": {
+            "id": "Eoo%7C",
+            "type": "email",
+            "email": email
+        },
+        "Curso": {
+            "id": "sHj%3D",
+            "type": "select",
+            "select": {
+                "id": "EgE|",
+                "name": course_name,
+                "color": "red"
+            }
+        },
+        "Done": {
+            "id": "vZbr",
+            "type": "select",
+            "select": {
+                "id": "UpUB",
+                "name": "Não",
+                "color": "orange"
+            }
+        },
+        "Título": {
+            "id": "%5BMu%3C",
+            "type": "rich_text",
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": "Mergo"
+                    },
+                    "annotations": {
+                        "bold": False,
+                        "italic": False,
+                        "strikethrough": False,
+                        "underline": False,
+                        "code": False,
+                        "color": "default"
+                    },
+                    "plain_text": course_title,
+                    "href": "none"
+                }
+            ]
+        },
+        "Pendente": {
+            "id": "nT%3A%5D",
+            "type": "checkbox",
+            "checkbox": False
+        },
+        "telegram_id": {
+            "id": "PnFU",
+            "type": "number",
+            "number": telegram_id
+        },
+        "Tipo": {
+            "id": "kIk_",
+            "type": "select",
+            "select": {
+                "id": "ETjJ",
+                "name": "Entregar um artigo",
+                "color": "orange"
+            }
+        },
+        "Observações": {
+            "id": "w%3D%3FH",
+            "type": "rich_text",
+            "rich_text": []
+        },
+        "Pessoa": {
+            "id": "title",
+            "type": "title",
+            "title": [
+                {
+                    "type": "text",
+                    "text": {
+                        "content": name
+                    },
+                    "plain_text": name,
+                    "href": "none"
+                }
+            ]
         }
-    })
+    }
+})
 
     headers = {'Authorization': 'Bearer ' + notion_token,
                'Notion-Version': notion_version, 'Content-Type': 'application/json'}

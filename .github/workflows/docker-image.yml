@@ -14,6 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      
+
+    - name: DigitalOcean Docker Image Publish
+      uses: ripplr-io/docr-docker-publish@v1
+      with:
+        image_path: registry.digitalocean.com/pretux/pretux-bot:$(date +%s)
+        docker_build_context: .
